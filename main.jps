@@ -41,7 +41,7 @@ nodes:
   nodeGroup: cp
   fixedCloudlets: 4
   cloudlets: 16
-  nodeType: nginx
+  nodeType: nginxphp
   skipEmail: true
   displayName: Grafana
   extip: ${settings.ssl:false}
@@ -79,12 +79,13 @@ actions:
               nodeid: ${nodes.cp[0].id}
               nodeGroup: cp
               type: ipv6
-        - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
-            nodeGroup: cp
-            skipEmail: true
-            settings:
-              customDomains: ${env.domain}
-              fallbackToX1: true
+        - installAddon:
+          id: letsencrypt-ssl-addon
+          nodeGroup: cp
+          skipEmail: true
+          settings:
+            customDomains: ${env.domain}
+
 
 
   install-grafana:
