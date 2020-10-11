@@ -105,6 +105,23 @@ actions:
         user: root
     - api [cp]: jelastic.environment.control.RestartNodes 
 
+
+addons:
+  - id: update-addon
+    name: Update Grafana Server
+    description: Update of Grafana and CentOS
+    buttons:
+      - caption: Update
+        action: update
+        loadingText: Updating...
+        confirmText: Do you want to update Grafana and CentOS?
+        successText: Grafana and CentOS have been successfully updated!
+    actions:
+      update:
+        - log: launching grafana update JPS
+        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/master/scripts/update-grafana.jps
+          skipEmail: true
+
 success:
   email: text/success-email.md
   text: text/success-text.md
