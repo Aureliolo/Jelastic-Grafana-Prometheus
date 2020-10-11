@@ -52,6 +52,9 @@ onInstall:
   - ssl
   - install-grafana
   - change-nginx-conf
+  - installAddon:
+      id: update-addon
+      nodeGroup: cp
  
 actions:
   variables-modification:
@@ -104,7 +107,6 @@ actions:
           sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
         user: root
     - api [cp]: jelastic.environment.control.RestartNodes 
-
 
 addons:
   - id: update-addon
