@@ -21,12 +21,18 @@ settings:
       hideLabel: false
       editable: false
       required: true
+    - name: ssl
+      type: checkbox
+      caption: Install Let's Encrypt addon + public IPv4/IPv6
+      value: false
+      hideLabel: false
+      hidden: false
 
 nodes:
   nodeGroup: cp
   fixedCloudlets: 4
   cloudlets: 16
-  nodeType: centos-vps
+  nodeType: nginx
   skipEmail: true
   displayName: Grafana
 
