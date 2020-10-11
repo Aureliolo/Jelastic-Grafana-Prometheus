@@ -25,13 +25,13 @@ actions:
           nodeGroup: cp
           path: /etc/yum.repos.d/grafana.repo
           body: |-
-            [grafana]\n
-            name=grafana\n
-            baseurl=https://packages.grafana.com/oss/rpm\n
-            repo_gpgcheck=1\n
-            enabled=1\n
-            gpgcheck=1\n
-            gpgkey=https://packages.grafana.com/gpg.key\n
+            [grafana]
+            name=grafana
+            baseurl=https://packages.grafana.com/oss/rpm
+            repo_gpgcheck=1
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://packages.grafana.com/gpg.key
             sslverify=1
             sslcacert=/etc/pki/tls/certs/ca-bundle.crt
     - else:
@@ -39,13 +39,13 @@ actions:
           nodeGroup: cp
           path: /etc/yum.repos.d/grafana.repo
           body: |-
-            [grafana]\n
-            name=grafana\n
-            baseurl=https://packages.grafana.com/entreprise/rpm\n
-            repo_gpgcheck=1\n
-            enabled=1\n
-            gpgcheck=1\n
-            gpgkey=https://packages.grafana.com/gpg.key\n
+            [grafana]
+            name=grafana
+            baseurl=https://packages.grafana.com/entreprise/rpm
+            repo_gpgcheck=1
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://packages.grafana.com/gpg.key
             sslverify=1
             sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 
