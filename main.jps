@@ -4,11 +4,9 @@ name: Grafana
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
 logo: images/grafana_logo.png
 homepage: https://grafana.com/
-description: |
-  Grafana is a multi-platform open source analytics and interactive visualization web application.
-  It provides charts, graphs, and alerts for the web when connected to supported data sources.
-  It is expandable through a plug-in system.
-  End users can create complex monitoring dashboards using interactive query builders.
+description: 
+  text: /text/description.md
+  short: Automatic Installation of Grafana OSS or Entreprise edition
 
 skipNodeEmails: true
 
