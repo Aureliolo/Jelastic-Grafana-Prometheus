@@ -20,7 +20,7 @@ actions:
 
   install-grafana:
     - log: Installation of Grafana
-    - cmd[cp]]: |-
+    - cmd[cp]: |-
         yum -y ${globals.GRAF-VER}
       user: root
       sayYes: true
