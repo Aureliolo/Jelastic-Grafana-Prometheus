@@ -20,7 +20,7 @@ actions:
     - createFile:
         path: /etc/yum.repos.d/grafana.repo
         nodeGroup: cp
-    - if ('${settings.version}' === 'OSS'):
+    - if ('${settings.GRAF-VER}' === 'grafana'):
         writeFile:
           nodeGroup: cp
           path: /etc/yum.repos.d/grafana.repo
