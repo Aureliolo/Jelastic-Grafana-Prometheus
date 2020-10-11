@@ -1,11 +1,11 @@
-type: install / update
+type: install 
 version: 0.1
-name: XXX
-baseUrl: https://raw.githubusercontent.com/panslothda/XXX
-logo: images/XXX
-homepage: https://XXX
+name: Grafana
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
+logo: images/grafana_logo.png
+homepage: https://grafana.com/
 description: |
-  XXX
+  Grafana is an opensource monitoring solution
 
 skipNodeEmails: true
 
