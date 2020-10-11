@@ -51,6 +51,7 @@ onInstall:
   - variables-modification
   - ssl
   - install-grafana
+  - change-nginx-conf
  
 actions:
   variables-modification:
@@ -93,8 +94,9 @@ actions:
     - cmd[cp]: |-
         sed -i '29d' /etc/nginx/conf.d/ssl.conf
         sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
-        sed -i '29d' /etc/nginx/nginx.conf
-        sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+        sed -i '74d' /etc/nginx/nginx.conf
+        sed -i "74i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+    - api [cp]: jelastic.environment.control.RestartNodes 
 
 success:
   email: text/success-email.md
