@@ -30,7 +30,7 @@ nodes:
   cloudlets: 16
   nodeType: centos-vps
   skipEmail: true
-  ishaenabled: true
+  displayName: Grafana
 
 onAfterRedeployContainer:
   - redeploy
@@ -38,7 +38,7 @@ onAfterRedeployContainer:
 onInstall:
   - variables-modification
   - enable-ssl
-  - update-centos
+  - install-grafana
   - add-to-redeploy
  
 actions:
@@ -46,18 +46,25 @@ actions:
     - log: check variables and set them correctly
     - setGlobals:
         GRAF-VER: ${settings.version}
-
-  update-centos:
-    - cmd [cp]: yum -y update
-      user: root
-      sayYes: true
-    - api [cp]: jelastic.environment.control.RestartNodes
+    - if (${settings.version} === OSS):
+        setGlobals: 
+          GRAF-VER: grafana
+    - else:
+        setGlobals: 
+          GRAF-VER: grafana-enterprise
 
   enable-ssl:
     log: Enable Built in SSL
     env.control.EditEnvSettings:
       settings:
-        sslstate: true  
+        sslstate: true 
+
+  install-grafana:
+    log: Install Grafana
+    - install: ${baseUrl}/scripts/install-grafana.jps
+      settings:
+        GRAF-VER: "${Globals.GRAF-VER}"
+      skipEmail: true 
   
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
