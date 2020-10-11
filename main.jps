@@ -21,6 +21,15 @@ settings:
       hideLabel: false
       editable: false
       required: true
+    - pack: ''
+      align: ''
+      defaultPadding: 5
+      defaultFlex: 0
+      caption: Compositefield
+      type: compositefield
+      name: compositefield
+      hideLabel: true
+      hidden: false
     - name: ssl
       type: checkbox
       caption: Install Let's Encrypt addon + public IPv4/IPv6
@@ -35,13 +44,14 @@ nodes:
   nodeType: nginx
   skipEmail: true
   displayName: Grafana
+  extip: ${settings.ssl:false}
 
 onAfterRedeployContainer:
   - redeploy
 
 onInstall:
   - variables-modification
-  - enable-ssl
+  - ssl
   - install-grafana
   - add-to-redeploy
  
@@ -55,11 +65,17 @@ actions:
         setGlobals: 
           GRAF-VER: grafana-enterprise
 
-  enable-ssl:
-    log: Enable Built in SSL
-    env.control.EditEnvSettings:
-      settings:
-        sslstate: true 
+  ssl:
+    - log: Configure SSL and public IP if enabled
+    - if ('${settings.ssl}' === 'false'):
+        env.control.EditEnvSettings:
+          settings:
+            sslstate: true 
+    - else:
+        setGlobals: 
+          GRAF-VER: grafana-enterprise
+
+    
 
   install-grafana:
     - log: Install Grafana
