@@ -19,6 +19,7 @@ actions:
 
   add-repo:
     - cmd[cp]: touch /etc/yum.repos.d/grafana.repo
+      user: root
     - if ('${settings.GRAF-VER}' === 'grafana'):
         writeFile:
           nodeGroup: cp
