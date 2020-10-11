@@ -73,7 +73,7 @@ actions:
             sslstate: true 
     - else:
         setGlobals: 
-          GRAF-VER: grafana-enterprise
+          globalSSL: true
 
     
 
