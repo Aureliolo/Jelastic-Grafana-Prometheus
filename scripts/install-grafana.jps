@@ -18,9 +18,7 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes
 
   add-repo:
-    - createFile:
-        path: /etc/yum.repos.d/grafana.repo
-        nodeGroup: cp
+    - cmd[cp]: touch /etc/yum.repos.d/grafana.repo
     - if ('${settings.GRAF-VER}' === 'grafana'):
         writeFile:
           nodeGroup: cp
