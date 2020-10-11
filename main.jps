@@ -91,18 +91,15 @@ actions:
       settings:
         GRAF-VER: ${globals.GRAF-VER}
       skipEmail: true 
-  
-  add-to-redeploy:
-    - log: Add all necessary files and folder to the redeploy file
-    - cmd [cp]: |-
-        echo /etc/grafana.conf >> /etc/jelastic/redeploy.conf
-      user: root  
-  
-  redeploy:
-    - log: re-install Grafana
-    - install: ${baseUrl}/scripts/redeploy.jps
-      skipEmail: true
 
+  change-nginx-conf:
+    - log: make nginx serve grafana over proxypass
+    - cmd[cp]: |-
+      sed -i '29d' /etc/nginx/conf.d/ssl.conf
+      sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
+      sed -i '29d' /etc/nginx/nginx.conf
+      sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+      
 success:
   email: text/success-email.md
   text: text/success-text.md

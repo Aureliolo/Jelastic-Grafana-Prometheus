@@ -1,6 +1,6 @@
-**XXXX URL**: [https://${env.domain}/](https://${env.domain}/)
+**Grafana URL**: [https://${env.domain}/](https://${env.domain}/)
 
-XXX:
+Login (please make sure to change password):
 
 **Login**: Admin  
-**Password**: ${globals.XXXX}
+**Password**: Admin

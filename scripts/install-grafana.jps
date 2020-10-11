@@ -8,7 +8,6 @@ onInstall:
   - add-repo
   - install-grafana
   - start-grafana
-
 actions:
   update-centos:
     - log: Update and restart centOS
