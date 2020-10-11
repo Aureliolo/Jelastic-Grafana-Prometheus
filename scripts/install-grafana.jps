@@ -52,7 +52,7 @@ actions:
   install-grafana:
     - log: Installation of Grafana
     - cmd[cp]: |-
-        yum -y install ${settings.GRAF-VER}
+        yum -y install ${settings.GRAF-VER} &>> /var/log/run.log
       user: root
       sayYes: true
 
