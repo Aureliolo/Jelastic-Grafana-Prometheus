@@ -72,10 +72,11 @@ actions:
           settings:
             sslstate: true 
     - else:
-        setGlobals: 
-          globalSSL: true
-
-    
+        api: 
+          - method: environment.binder.rest.attachextip
+            params:
+              nodeGroup: cp
+              type: ipv6
 
   install-grafana:
     - log: Install Grafana
