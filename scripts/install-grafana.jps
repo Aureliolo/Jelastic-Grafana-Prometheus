@@ -4,7 +4,7 @@ baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
 skipNodeEmails: true
 
 globals:
-  GRAF-VER: "${settings.GRAF-VER}"
+  GRAF-VER: ${settings.GRAF-VER}
 
 onInstall:
   - update-centos
