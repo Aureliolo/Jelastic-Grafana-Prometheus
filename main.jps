@@ -14,86 +14,59 @@ skipNodeEmails: true
 
 settings:
   fields:
-  - name: version
-    type: list
-    caption: Grafana Version
-    values:
-      version1: Grafana OpenSource
-      version2: Grafana Enterprise
-    default: version2
-    hideLabel: false
-    editable: false
-    
+    - name: version
+      type: list
+      caption: Grafana Version
+      values:
+        OSS: Grafana OpenSource
+        ENTERPRISE: Grafana Enterprise
+      hideLabel: false
+      editable: false
+      required: true
+
 nodes:
   nodeGroup: cp
   fixedCloudlets: 4
   cloudlets: 16
   nodeType: centos-vps
   skipEmail: true
-
-globals:
-  DB_USER: jelastic-${fn.random}
-  DB_PASS: ${fn.password(10)}
-  DB_HOST: 127.0.0.1
-  XXX_PASS: ${fn.password(10)}
-
-onInstall:
-  - XXX
-  - enable-ssl
-  - XXX
-  - add-to-redeploy
-  - installAddon:
-      id: update-addon
-      nodeGroup: XXX  
+  ishaenabled: true
 
 onAfterRedeployContainer:
   - redeploy
 
-addons:
-  - id: update-addon
-    name: Update XXX XXX
-    description: XXX
-    buttons:
-      - caption: Update
-        action: update
-        loadingText: Updating...
-        confirmText: Do you want to update XXX?
-        successText: XXX have been successfully updated!
-    actions:
-      update:
-        - log: XXX
-        - install: https://raw.githubusercontent.com/panslothda/XXX/scripts/update-XXX.jps
-          skipEmail: true
-
+onInstall:
+  - variables-modification
+  - enable-ssl
+  - update-centos
+  - add-to-redeploy
+ 
 actions:
-  XXX:
-    api[cp]:
-      - method: XXX
-        params:
+  variables-modification:
+    - log: check variables and set them correctly
+    - setGlobals:
+        GRAF-VER: ${settings.version}
+
+  update-centos:
+    - cmd [cp]: yum -y update
+      user: root
+      sayYes: true
+    - api [cp]: jelastic.environment.control.RestartNodes
 
   enable-ssl:
     log: Enable Built in SSL
     env.control.EditEnvSettings:
       settings:
-        sslstate: true
-
-  XXX:
-    - log: XXX
-    - cmd [cp]: |-
-        XXX
-      user: root  
-
+        sslstate: true  
   
   add-to-redeploy:
     - log: Add all necessary files and folder to the redeploy file
     - cmd [cp]: |-
-        echo XXX >> /etc/jelastic/redeploy.conf
-        echo XXX >> /etc/jelastic/redeploy.conf
-        echo XXX >> /etc/jelastic/redeploy.conf
+        echo /etc/grafana.conf >> /etc/jelastic/redeploy.conf
       user: root  
   
   redeploy:
-    - log: re-install XXX
+    - log: re-install Grafana
     - install: ${baseUrl}/scripts/redeploy.jps
       skipEmail: true
 
