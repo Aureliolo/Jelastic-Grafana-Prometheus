@@ -18,40 +18,66 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes
 
   add-repo:
-    - createFile:
-        path: /etc/yum.repos.d/grafana.repo
-        nodeGroup: cp
+#    - createFile:
+#        path: /etc/yum.repos.d/grafana.repo
+#        nodeGroup: cp
+#      user: root
+    - cmd[cp]: touch /etc/yum.repos.d/grafana.repo
       user: root
     - if ('${settings.GRAF-VER}' === 'grafana'):
-        writeFile:
-          nodeGroup: cp
-          path: /etc/yum.repos.d/grafana.repo
-          body: |-
-            [grafana]
-            name=grafana
-            baseurl=https://packages.grafana.com/oss/rpm
-            repo_gpgcheck=1
-            enabled=1
-            gpgcheck=1
-            gpgkey=https://packages.grafana.com/gpg.key
-            sslverify=1
-            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-          user: root
+      cmd[cp]: |-
+        cat <<EOT >> /etc/yum.repos.d/grafana.repo
+        [grafana]
+        name=grafana
+        baseurl=https://packages.grafana.com/oss/rpm
+        repo_gpgcheck=1
+        enabled=1
+        gpgcheck=1
+        gpgkey=https://packages.grafana.com/gpg.key
+        sslverify=1
+        sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+        EOT
+#        writeFile:
+#          nodeGroup: cp
+#          path: /etc/yum.repos.d/grafana.repo
+#          body: |-
+#            [grafana]
+#            name=grafana
+#            baseurl=https://packages.grafana.com/oss/rpm
+#            repo_gpgcheck=1
+#            enabled=1
+#            gpgcheck=1
+#            gpgkey=https://packages.grafana.com/gpg.key
+#            sslverify=1
+#            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+#          user: root
     - else:
-        writeFile:
-          nodeGroup: cp
-          path: /etc/yum.repos.d/grafana.repo
-          body: |-
-            [grafana]
-            name=grafana
-            baseurl=https://packages.grafana.com/enterprise/rpm
-            repo_gpgcheck=1
-            enabled=1
-            gpgcheck=1
-            gpgkey=https://packages.grafana.com/gpg.key
-            sslverify=1
-            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-          user: root
+      cmd[cp]: |-
+        cat <<EOT >> /etc/yum.repos.d/grafana.repo
+        [grafana]
+        name=grafana
+        baseurl=https://packages.grafana.com/enterprise/rpm
+        repo_gpgcheck=1
+        enabled=1
+        gpgcheck=1
+        gpgkey=https://packages.grafana.com/gpg.key
+        sslverify=1
+        sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+        EOT
+#       writeFile:
+#         nodeGroup: cp
+#         path: /etc/yum.repos.d/grafana.repo
+#         body: |-
+#           [grafana]
+#           name=grafana
+#           baseurl=https://packages.grafana.com/enterprise/rpm
+#           repo_gpgcheck=1
+#           enabled=1
+#           gpgcheck=1
+#           gpgkey=https://packages.grafana.com/gpg.key
+#           sslverify=1
+#           sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+#         user: root
 
   install-grafana:
     - log: Installation of Grafana
