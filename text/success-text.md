@@ -2,5 +2,5 @@
 
 Login (please make sure to change password):
 
-**Login**: Admin  
-**Password**: Admin
+**Login**: admin  
+**Password**: admin
