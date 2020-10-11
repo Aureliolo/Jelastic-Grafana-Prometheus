@@ -95,11 +95,11 @@ actions:
   change-nginx-conf:
     - log: make nginx serve grafana over proxypass
     - cmd[cp]: |-
-      sed -i '29d' /etc/nginx/conf.d/ssl.conf
-      sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
-      sed -i '29d' /etc/nginx/nginx.conf
-      sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
-      
+        sed -i '29d' /etc/nginx/conf.d/ssl.conf
+        sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
+        sed -i '29d' /etc/nginx/nginx.conf
+        sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+
 success:
   email: text/success-email.md
   text: text/success-text.md
