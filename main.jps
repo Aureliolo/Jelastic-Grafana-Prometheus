@@ -121,7 +121,7 @@ addons:
     actions:
       update:
         - log: launching grafana update JPS
-        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/master/scripts/update-grafana.jps
+        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main/scripts/update-grafana.jps
           skipEmail: true
 
 success:
