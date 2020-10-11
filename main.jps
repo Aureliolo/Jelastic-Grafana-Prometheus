@@ -59,7 +59,7 @@ actions:
     - log: Install Grafana
     - install: ${baseUrl}/scripts/install-grafana.jps
       settings:
-        GRAF-VER: "${Globals.GRAF-VER}"
+        GRAF-VER: ${globals.GRAF-VER}
       skipEmail: true 
   
   add-to-redeploy:
