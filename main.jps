@@ -32,7 +32,7 @@ settings:
       hidden: false
     - name: ssl
       type: checkbox
-      caption: Install Let's Encrypt addon + public IPv4/IPv6
+      caption: Install Let's Encrypt addon + public IPv4/IPv6 for Custom Domain
       value: false
       hideLabel: false
       hidden: false
