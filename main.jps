@@ -73,8 +73,9 @@ actions:
             sslstate: true 
     - else:
         api: 
-          - method: environment.binder.rest.attachextip
+          - method: environment.binder.attachextip
             params:
+              nodeid: ${nodes.cp[0].id}
               nodeGroup: cp
               type: ipv6
 
