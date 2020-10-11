@@ -1,0 +1,27 @@
+type: update
+name: Install Grafana
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
+skipNodeEmails: true
+
+globals:
+  GRAF-VER: "${settings.GRAF-VER}"
+
+onInstall:
+  - update-centos
+  - install-grafana
+
+
+actions:
+  update-centos:
+    - cmd [cp]: yum -y update &>> /var/log/run.log
+      user: root
+      sayYes: true
+    - api [cp]: jelastic.environment.control.RestartNodes
+
+  install-grafana:
+    - log: Installation of Grafana
+    - cmd[cp]]: |-
+        yum -y ${globals.GRAF-VER}
+      user: root
+      sayYes: true
+
