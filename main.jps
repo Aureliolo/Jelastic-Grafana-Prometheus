@@ -5,15 +5,30 @@ baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
 logo: images/grafana_logo.png
 homepage: https://grafana.com/
 description: |
-  Grafana is an opensource monitoring solution
+  Grafana is a multi-platform open source analytics and interactive visualization web application.
+  It provides charts, graphs, and alerts for the web when connected to supported data sources.
+  It is expandable through a plug-in system.
+  End users can create complex monitoring dashboards using interactive query builders.
 
 skipNodeEmails: true
 
+settings:
+  fields:
+  - name: version
+    type: list
+    caption: Grafana Version
+    values:
+      version1: Grafana OpenSource
+      version2: Grafana Enterprise
+    default: version2
+    hideLabel: false
+    editable: false
+    
 nodes:
-  nodeType: llsmp
+  nodeGroup: cp
   fixedCloudlets: 4
   cloudlets: 16
-  nodeGroup: cp
+  nodeType: centos-vps
   skipEmail: true
 
 globals:
