@@ -1,0 +1,26 @@
+type: update
+version: 0.1
+name: Grafana Server Upgrade 
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
+logo: images/grafana_logo.png
+homepage: https://grafana.com/
+description: |
+  This Addon allows you to upgrade Grafana and CentOS.  
+
+targetNodes:
+  nodeGroup: [cp]
+ 
+onInstall:
+  - update-packages
+  - restart
+actions:
+  update-packages:
+    - log: update of Centos
+    - cmd [cp]: yum -y update &>> /var/log/run.log
+      user: root
+      sayYes: true
+  restart:
+    - api [cp]: jelastic.environment.control.RestartNodes 
+
+success:
+  text: text/success-update-text.mds
