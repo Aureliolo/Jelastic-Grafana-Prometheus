@@ -7,6 +7,7 @@ onInstall:
   - update-centos
   - add-repo
   - install-grafana
+  - start-grafana
 
 actions:
   update-centos:
@@ -41,7 +42,7 @@ actions:
           body: |-
             [grafana]
             name=grafana
-            baseurl=https://packages.grafana.com/entreprise/rpm
+            baseurl=https://packages.grafana.com/enterprise/rpm
             repo_gpgcheck=1
             enabled=1
             gpgcheck=1
@@ -56,3 +57,10 @@ actions:
       user: root
       sayYes: true
 
+  start-grafana:
+    - log: Start and enable Grafana
+    - cmd[cp]: |-
+        systemctl daemon-reload
+        systemctl start grafana-server
+        systemctl enable grafana-server
+      user: root 
