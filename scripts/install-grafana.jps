@@ -18,7 +18,9 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes
 
   add-repo:
-    - cmd[cp]: touch /etc/yum.repos.d/grafana.repo
+    - createFile:
+        path: /etc/yum.repos.d/grafana.repo
+        nodeGroup: cp
       user: root
     - if ('${settings.GRAF-VER}' === 'grafana'):
         writeFile:
@@ -34,6 +36,7 @@ actions:
             gpgkey=https://packages.grafana.com/gpg.key
             sslverify=1
             sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+          user: root
     - else:
         writeFile:
           nodeGroup: cp
@@ -48,6 +51,7 @@ actions:
             gpgkey=https://packages.grafana.com/gpg.key
             sslverify=1
             sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+          user: root
 
   install-grafana:
     - log: Installation of Grafana
