@@ -3,14 +3,10 @@ name: Install Grafana
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
 skipNodeEmails: true
 
-globals:
-  GRAF-VER: ${settings.GRAF-VER}
-
 onInstall:
   - update-centos
   - add-repo
   - install-grafana
-
 
 actions:
   update-centos:
@@ -21,43 +17,42 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes
 
   add-repo:
-    createFile:
-      path: /etc/yum.repos.d/grafana.repo
-      nodeGroup: cp
-
-    if ('${settings.version}' === 'OSS'):
-      writeFile:
-        nodeGroup: cp
+    - createFile:
         path: /etc/yum.repos.d/grafana.repo
-        body: |-
-          [grafana]\n
-          name=grafana\n
-          baseurl=https://packages.grafana.com/oss/rpm\n
-          repo_gpgcheck=1\n
-          enabled=1\n
-          gpgcheck=1\n
-          gpgkey=https://packages.grafana.com/gpg.key\n
-          sslverify=1
-          sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-    else:
-      writeFile:
         nodeGroup: cp
-        path: /etc/yum.repos.d/grafana.repo
-        body: |-
-          [grafana]\n
-          name=grafana\n
-          baseurl=https://packages.grafana.com/entreprise/rpm\n
-          repo_gpgcheck=1\n
-          enabled=1\n
-          gpgcheck=1\n
-          gpgkey=https://packages.grafana.com/gpg.key\n
-          sslverify=1
-          sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+    - if ('${settings.version}' === 'OSS'):
+        writeFile:
+          nodeGroup: cp
+          path: /etc/yum.repos.d/grafana.repo
+          body: |-
+            [grafana]\n
+            name=grafana\n
+            baseurl=https://packages.grafana.com/oss/rpm\n
+            repo_gpgcheck=1\n
+            enabled=1\n
+            gpgcheck=1\n
+            gpgkey=https://packages.grafana.com/gpg.key\n
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+    - else:
+        writeFile:
+          nodeGroup: cp
+          path: /etc/yum.repos.d/grafana.repo
+          body: |-
+            [grafana]\n
+            name=grafana\n
+            baseurl=https://packages.grafana.com/entreprise/rpm\n
+            repo_gpgcheck=1\n
+            enabled=1\n
+            gpgcheck=1\n
+            gpgkey=https://packages.grafana.com/gpg.key\n
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 
   install-grafana:
     - log: Installation of Grafana
     - cmd[cp]: |-
-        yum -y install ${globals.GRAF-VER}
+        yum -y install ${settings.GRAF-VER}
       user: root
       sayYes: true
 
