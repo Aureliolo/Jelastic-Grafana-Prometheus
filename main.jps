@@ -45,6 +45,7 @@ nodes:
   skipEmail: true
   displayName: Grafana
   extip: ${settings.ssl:false}
+  isSLBAccessEnabled: true
 
 onAfterRedeployContainer:
   - redeploy
@@ -78,9 +79,13 @@ actions:
               nodeid: ${nodes.cp[0].id}
               nodeGroup: cp
               type: ipv6
-        - installAddon:
-          id: letsencrypt-ssl-addon
-          nodeGroup: cp
+        - install: https://github.com/jelastic-jps/lets-encrypt/blob/master/manifest.jps?_r=${fn.random}
+            nodeGroup: cp
+            skipEmail: true
+            settings:
+              customDomains: ${env.domain}
+              fallbackToX1: true
+
 
   install-grafana:
     - log: Install Grafana
