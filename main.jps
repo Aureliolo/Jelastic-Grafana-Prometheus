@@ -47,9 +47,6 @@ nodes:
   extip: ${settings.ssl:false}
   isSLBAccessEnabled: true
 
-onAfterRedeployContainer:
-  - redeploy
-
 onInstall:
   - variables-modification
   - ssl
