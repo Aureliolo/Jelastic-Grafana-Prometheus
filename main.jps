@@ -42,9 +42,7 @@ onInstall:
 actions:
   variables-modification:
     - log: check variables and set them correctly
-    - setGlobals:
-        GRAF-VER: ${settings.version}
-    - if (${settings.version} == 'OSS'):
+    - if (settings.version == OSS):
         setGlobals: 
           GRAF-VER: grafana
     - else:
