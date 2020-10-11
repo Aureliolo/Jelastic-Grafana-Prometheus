@@ -54,7 +54,6 @@ onInstall:
   - variables-modification
   - ssl
   - install-grafana
-  - add-to-redeploy
  
 actions:
   variables-modification:
