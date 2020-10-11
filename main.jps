@@ -44,7 +44,7 @@ actions:
     - log: check variables and set them correctly
     - setGlobals:
         GRAF-VER: ${settings.version}
-    - if (${settings.version} === OSS):
+    - if (${settings.version} == 'OSS'):
         setGlobals: 
           GRAF-VER: grafana
     - else:
@@ -58,7 +58,7 @@ actions:
         sslstate: true 
 
   install-grafana:
-    log: Install Grafana
+    - log: Install Grafana
     - install: ${baseUrl}/scripts/install-grafana.jps
       settings:
         GRAF-VER: "${Globals.GRAF-VER}"
