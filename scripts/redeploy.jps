@@ -1,0 +1,29 @@
+type: update
+name: Redeploy XXX
+description: XXX
+logo: images/XXX
+baseUrl: https://raw.githubusercontent.com/panslothda/XXX/master
+skipNodeEmails: true
+
+globals:
+  XXX: "XXX"
+  TARGET_NODE_ID: "${settings.targetNodeID}"
+
+onInstall:
+  - install-XXX
+  - additional-config
+
+actions:
+  install-XXX:
+    - log: Download and install XXX
+    - cmd[cp]: |-
+        XXX
+      user: root
+      sayYes: true
+
+  additional-config:
+    - log: execute miscellanious commands for XXX
+    - cmd[${globals.TARGET_NODE_ID}]: |-
+        XXX
+      user: root
+      sayYes: true
