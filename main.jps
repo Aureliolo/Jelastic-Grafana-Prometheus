@@ -72,12 +72,15 @@ actions:
           settings:
             sslstate: true 
     - else:
-        api: 
+        - api: 
           - method: environment.binder.attachextip
             params:
               nodeid: ${nodes.cp[0].id}
               nodeGroup: cp
               type: ipv6
+        - installAddon:
+          id: letsencrypt-ssl-addon
+          nodeGroup: cp
 
   install-grafana:
     - log: Install Grafana
