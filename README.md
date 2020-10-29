@@ -7,3 +7,11 @@ https://grafana.com/blog/2019/09/04/how-we-differentiate-grafana-enterprise-from
 
 You also have the option to install a public IP plus let's encrypt for use with your own Domain.
 If you don't select this option it will enable Platform SSL and you wil have to use the jelastic Environment URL.
+
+# Installation
+Simply import this link using the Jelastic JPS Import function:
+```
+https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/master/main.jps
+```
+
+Or copy the content of main.jps into the import window.
