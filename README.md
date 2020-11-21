@@ -11,7 +11,7 @@ If you don't select this option it will enable Platform SSL and you wil have to 
 # Installation
 Simply import this link using the Jelastic JPS Import function:
 ```
-https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/master/main.jps
+https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main/main.jps
 ```
 
 Or copy the content of main.jps into the import window.
