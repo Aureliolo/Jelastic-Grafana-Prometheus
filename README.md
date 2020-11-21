@@ -15,3 +15,6 @@ https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main/main.jps
 ```
 
 Or copy the content of main.jps into the import window.
+
+
+![Interface](images/interface.png?raw=true)
