@@ -4,17 +4,17 @@ baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
 skipNodeEmails: true
 
 onInstall:
-  - update-centos
+#  - update-centos
   - add-repo
   - install-grafana
   - start-grafana
 actions:
-  update-centos:
-    - log: Update and restart centOS
-    - cmd [cp]: yum -y update &>> /var/log/run.log
-      user: root
-      sayYes: true
-    - api [cp]: jelastic.environment.control.RestartNodes
+#  update-centos:
+#    - log: Update and restart centOS
+#    - cmd [cp]: yum -y update &>> /var/log/run.log
+#      user: root
+#      sayYes: true
+#    - api [cp]: jelastic.environment.control.RestartNodes
 
   add-repo:
     - cmd[cp]: touch /etc/yum.repos.d/grafana.repo
