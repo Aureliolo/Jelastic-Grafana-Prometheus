@@ -8,6 +8,9 @@ description:
   text: /text/description.md
   short: Automatic Installation of Grafana OSS or Entreprise edition
 
+categories:
+- apps/dev-and-admin-tools
+
 skipNodeEmails: true
 
 settings:
