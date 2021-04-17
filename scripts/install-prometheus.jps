@@ -6,7 +6,7 @@ skipNodeEmails: true
 onInstall:
   - prepare-user
   - download-install-prometheus
-  - configure prometheus
+  - configure-prometheus
   - add-to-systemd
   - enable-start-systemd
 
