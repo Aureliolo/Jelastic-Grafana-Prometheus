@@ -61,6 +61,7 @@ onInstall:
   - variables-modification
   - ssl
   - install-grafana
+  - install-prometheus
   - change-nginx-conf
   - installAddon:
       id: update-addon
@@ -101,6 +102,15 @@ actions:
       settings:
         GRAF-VER: ${globals.GRAF-VER}
       skipEmail: true 
+
+  install-prometheus:
+    - log: Install Prometheus
+    - install: ${baseUrl}/scripts/install-prometheus.jps
+    - if ('${settings.prometheus}' === 'false'):
+      - log: No Prometheus installation
+    - else:
+      - install: ${baseUrl}/scripts/install-prometheus.jps
+        skipEmail: true 
 
   change-nginx-conf:
     - log: make nginx serve grafana over proxypass
