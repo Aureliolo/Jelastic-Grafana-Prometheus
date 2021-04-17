@@ -1,0 +1,11 @@
+type: update
+name: Install Prometheus
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
+skipNodeEmails: true
+
+onInstall:
+  - add-repo
+
+actions:
+
+  add-repo:
