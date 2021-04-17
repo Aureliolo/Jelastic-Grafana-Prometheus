@@ -1,7 +1,7 @@
 type: update
 version: 0.1
 name: Grafana Server Upgrade 
-baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
 logo: images/grafana_logo.png
 homepage: https://grafana.com/
 description: |
