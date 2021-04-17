@@ -1,0 +1,51 @@
+type: update
+version: 0.1
+name: Grafana Server Upgrade 
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
+logo: images/grafana_logo.png
+
+targetNodes:
+  nodeGroup: [cp]
+ 
+onInstall:
+  - stop-server
+  - download-new
+  - restart
+
+actions:
+  stop-server:
+    - log: Stops Services
+    - cmd[cp]: |-
+        systemctl stop grafana
+        systemctl stop prometheus
+      user: root
+      sayYes: true
+
+  download-new:
+    - log: Download and Install new Prometheus Package while keeping config
+    - cmd[cp]: |-
+        mkdir -p /tmp/prometheus && cd /tmp/prometheus
+        curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
+        | grep browser_download_url \
+        | grep linux-amd64 \
+        | cut -d '"' -f 4 \
+        | wget -qi -
+        tar xvf prometheus*.tar.gz
+        cd prometheus*/
+        cp -R prometheus/data
+        
+
+        
+        mv prometheus promtool /usr/local/bin/
+        echo /usr/local/bin/promtool >> /etc/jelastic/redeploy.conf
+        mv prometheus.yml  /etc/prometheus/prometheus.yml
+        mv consoles/ console_libraries/ /etc/prometheus/
+        cd ~/
+        rm -rf /tmp/prometheus
+      user: root
+      sayYes: true
+  restart:
+    - api [cp]: jelastic.environment.control.RestartNodes 
+
+success:
+  text: text/success-update-text.mds
