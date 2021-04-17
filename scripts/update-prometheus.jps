@@ -1,6 +1,6 @@
 type: update
 version: 0.1
-name: Grafana Server Upgrade 
+name: Prometheus Server Upgrade 
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
 logo: images/grafana_logo.png
 
@@ -44,6 +44,8 @@ actions:
         rm -rf /tmp/prometheus
       user: root
       sayYes: true
+
+      
   restart:
     - api [cp]: jelastic.environment.control.RestartNodes 
 
