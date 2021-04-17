@@ -86,9 +86,9 @@ actions:
   enable-start-systemd:
     - log: Enable and start Systemd Unit
     - cmd[cp]: |-
-        systemctl daemon-reload
-        systemctl start prometheus
-        systemctl enable prometheus
+        systemctl daemon-reload &>> /var/log/run.log
+        systemctl start prometheus &>> /var/log/run.log
+        systemctl enable prometheus &>> /var/log/run.log
         echo /etc/systemd/system/prometheus.service >> /etc/jelastic/redeploy.conf
       user: root
       sayYes: true
