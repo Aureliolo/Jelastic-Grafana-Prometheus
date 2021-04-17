@@ -105,7 +105,6 @@ actions:
 
   install-prometheus:
     - log: Install Prometheus
-    - install: ${baseUrl}/scripts/install-prometheus.jps
     - if ('${settings.prometheus}' === 'false'):
       - log: No Prometheus installation
     - else:
