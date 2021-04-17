@@ -1,12 +1,12 @@
 type: install 
 version: 0.1
 name: Grafana
-baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main
+baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
 logo: images/grafana_logo.png
-homepage: https://grafana.com/
+homepage: https://grafana.com/ https://prometheus.io/
 description: 
   text: /text/description.md
-  short: Automatic Installation of Grafana OSS or Entreprise edition
+  short: Automatic Installation of Grafana OSS or Entreprise edition with Prometheus
 
 categories:
 - apps/dev-and-admin-tools
@@ -33,12 +33,19 @@ settings:
       name: compositefield
       hideLabel: true
       hidden: false
+    - name: prometheus
+      type: checkbox
+      caption: Install Prometheus
+      value: true
+      hideLabel: false
+      hidden: false      
     - name: ssl
       type: checkbox
       caption: Install Let's Encrypt addon + public IPv4/IPv6 for Custom Domain
       value: false
       hideLabel: false
       hidden: false
+
 
 nodes:
   nodeGroup: cp
