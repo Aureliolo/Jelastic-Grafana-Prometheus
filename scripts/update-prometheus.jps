@@ -31,7 +31,7 @@ actions:
         cp -a /var/lib/prometheus/. ./var-lib-prometheus
         cp -a /etc/prometheus/. ./etc-prometheus
         cd ../
-        tar -zcvf "prometheus-backup-$(date +%F-%H_%M).tar.gz" -C /tmp/prometheus .
+        tar -zcvf "prometheus-backup-$(date +%F-%H_%M).tar.gz" -C /tmp/prometheus . &>> /var/log/run.log
         mv prometheus-backup* /opt/prometheus/
         chown prometheus:prometheus /opt/prometheus/prometheus-backup*
         cd ~/
@@ -48,7 +48,7 @@ actions:
         | grep linux-amd64 \
         | cut -d '"' -f 4 \
         | wget -qi -
-        tar xvf prometheus*.tar.gz
+        tar xvf prometheus*.tar.gz &>> /var/log/run.log
         cd prometheus*/
         mv prometheus promtool /usr/local/bin/
         mv consoles/ console_libraries/ /etc/prometheus/
