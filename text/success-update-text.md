@@ -1,1 +1,1 @@
-Update has been succesfully done!
+Grafana Update (if available) has been succesfully done!
