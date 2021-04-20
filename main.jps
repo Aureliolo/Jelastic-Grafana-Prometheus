@@ -124,6 +124,11 @@ actions:
       - cmd[cp]: |-
           sed -i '74d' /etc/nginx/nginx.conf
           sed -i "74i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+          sed -i "72i location /prometheus {"  /etc/nginx/nginx.conf
+          sed -i "72i    auth_basic "Prometheus";"  /etc/nginx/nginx.conf
+          sed -i "72i    auth_basic_user_file /etc/prometheus/.htpasswd;"  /etc/nginx/nginx.conf
+          sed -i "72i    proxy_pass http://localhost:9090/prometheus;"  /etc/nginx/nginx.conf
+          sed -i "72i   }"  /etc/nginx/nginx.conf
         user: root
     - else:
       - cmd[cp]: |-
@@ -151,7 +156,7 @@ addons:
           skipEmail: true
   - id: update-prometheus
     name: Update Prometheus Server
-    logo: images/prometheus_logo.png
+    logo: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main/images/prometheus_logo.png
     description: Update of Prometheus
     buttons:
       - caption: Update
