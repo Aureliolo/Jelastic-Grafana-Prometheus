@@ -66,7 +66,9 @@ onInstall:
   - install-prometheus
   - change-nginx-conf
   - installAddon:
-      id: update-addon
+      id: update-grafana
+      nodeGroup: cp
+      id: update-prometheus
       nodeGroup: cp
  
 actions:
@@ -132,7 +134,7 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes 
 
 addons:
-  - id: update-addon
+  - id: update-grafana
     name: Update Grafana Server
     description: Update of Grafana and CentOS
     buttons:
@@ -144,9 +146,23 @@ addons:
     actions:
       update:
         - log: launching grafana update JPS
-        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana/main/scripts/update-grafana.jps
+        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main/scripts/update-grafana.jps
           skipEmail: true
-
+  - id: update-prometheus
+    name: Update Prometheus Server
+    logo: images/prometheus_logo.png
+    description: Update of Prometheus
+    buttons:
+      - caption: Update
+        action: update
+        loadingText: Updating...
+        confirmText: Do you want to update Prometheus?
+        successText: Prometheus has been successfully updated!
+    actions:
+      update:
+        - log: launching prometheus update JPS
+        - install: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main/scripts/update-prometheus.jps
+          skipEmail: true
 success:
   email: text/success-email.md
   text: text/success-text.md
