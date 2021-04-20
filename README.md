@@ -21,3 +21,6 @@ Or copy the content of main.jps into the import window.
 
 
 ![Interface](images/interface.png?raw=true)
+
+
+![Update Addons](images/update.png?raw=true)
