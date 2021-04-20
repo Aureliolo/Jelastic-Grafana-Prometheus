@@ -53,6 +53,7 @@ actions:
         for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chown -R prometheus:prometheus /etc/prometheus/${i}; done
         for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chmod -R 775 /etc/prometheus/${i}; done
         chown -R prometheus:prometheus /var/lib/prometheus/
+        chown -R prometheus:prometheus /opt/prometheus/
         chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
       user: root
       sayYes: true
