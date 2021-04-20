@@ -9,7 +9,9 @@ targetNodes:
  
 onInstall:
   - stop-server
+  - backup-current
   - download-new
+  - set-permissions
   - restart
 
 actions:
@@ -18,6 +20,22 @@ actions:
     - cmd[cp]: |-
         systemctl stop grafana
         systemctl stop prometheus
+      user: root
+      sayYes: true
+
+  backup-current:
+    - log: Backup existing files and config
+    - cmd[cp]: |-
+        mkdir -p /tmp/prometheus && cd /tmp/prometheus
+        cp -a /usr/local/bin/{prometheus,promtool} ./
+        cp -a /var/lib/prometheus/. ./var-lib-prometheus
+        cp -a /etc/prometheus/. ./etc-prometheus
+        cd ../
+        tar -zcvf "prometheus-backup-$(date +%F-%H_%M).tar.gz" -C /tmp/prometheus .
+        mv prometheus-backup* /opt/prometheus/
+        chown prometheus:prometheus /opt/prometheus/prometheus-backup*
+        cd ~/
+        rm -rf /tmp/prometheus
       user: root
       sayYes: true
 
@@ -32,19 +50,21 @@ actions:
         | wget -qi -
         tar xvf prometheus*.tar.gz
         cd prometheus*/
-        cp -R prometheus/data
-        
-
-        
         mv prometheus promtool /usr/local/bin/
-        echo /usr/local/bin/promtool >> /etc/jelastic/redeploy.conf
-        mv prometheus.yml  /etc/prometheus/prometheus.yml
         mv consoles/ console_libraries/ /etc/prometheus/
         cd ~/
         rm -rf /tmp/prometheus
       user: root
       sayYes: true
 
+  set-permissions:
+    - log: reset permissions if lost
+    - cmd[cp]: |-
+        for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chown -R prometheus:prometheus /etc/prometheus/${i}; done
+        for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chmod -R 775 /etc/prometheus/${i}; done
+        chown prometheus:prometheus /usr/local/bin/{prometheus,promtool}
+      user: root
+      sayYes: true
       
   restart:
     - api [cp]: jelastic.environment.control.RestartNodes 
