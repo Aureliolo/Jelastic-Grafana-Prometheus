@@ -1,2 +1,1 @@
-Grafana Server has been succesfully updated!
-
+Update has been succesfully done!
