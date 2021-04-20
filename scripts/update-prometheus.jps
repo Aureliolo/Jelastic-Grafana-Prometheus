@@ -70,4 +70,4 @@ actions:
     - api [cp]: jelastic.environment.control.RestartNodes 
 
 success:
-  text: text/success-update-text.mds
+  text: text/success-update-prometheus.md
