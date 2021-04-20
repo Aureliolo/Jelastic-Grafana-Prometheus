@@ -18,6 +18,8 @@ actions:
         groupadd --system prometheus &>> /var/log/run.log
         useradd -s /sbin/nologin --system -g prometheus prometheus &>> /var/log/run.log
         mkdir /var/lib/prometheus
+        mkdir /opt/prometheus
+        echo /opt/prometheus >> /etc/jelastic/redeploy.conf
         for i in rules rules.d files_sd; do sudo mkdir -p /etc/prometheus/${i}; done
         echo /var/lib/prometheus >> /etc/jelastic/redeploy.conf
         echo /etc/prometheus >> /etc/jelastic/redeploy.conf
