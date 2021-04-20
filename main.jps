@@ -68,9 +68,10 @@ onInstall:
   - installAddon:
       id: update-grafana
       nodeGroup: cp
-  - installAddon:
-      id: update-prometheus
-      nodeGroup: cp
+  - if ('${settings.prometheus}' === 'true'):
+    - installAddon:
+        id: update-prometheus
+        nodeGroup: cp
  
 actions:
   variables-modification:
