@@ -9,6 +9,7 @@ onInstall:
   - configure-prometheus
   - add-to-systemd
   - enable-start-systemd
+  - configure-nginx
 
 actions:
 
@@ -73,7 +74,7 @@ actions:
         echo '  --web.console.templates=/etc/prometheus/consoles \' >> /etc/systemd/system/prometheus.service
         echo '  --web.console.libraries=/etc/prometheus/console_libraries \' >> /etc/systemd/system/prometheus.service
         echo '  --web.listen-address=0.0.0.0:9090 \' >> /etc/systemd/system/prometheus.service
-        echo '  --web.external-url=' >> /etc/systemd/system/prometheus.service
+        echo '  --web.external-url=http://localhost:9090/prometheus/' >> /etc/systemd/system/prometheus.service
         echo "" >> /etc/systemd/system/prometheus.service
         echo "SyslogIdentifier=prometheus" >> /etc/systemd/system/prometheus.service
         echo "Restart=always" >> /etc/systemd/system/prometheus.service
@@ -92,3 +93,5 @@ actions:
         echo /etc/systemd/system/prometheus.service >> /etc/jelastic/redeploy.conf
       user: root
       sayYes: true
+
+
