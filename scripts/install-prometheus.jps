@@ -101,6 +101,7 @@ actions:
   configure-nginx:
     - log: Setup basic auth
     - cmd[cp]: |-
-         printf "Prometheus:$(openssl passwd -crypt ${globals.PASS})\n" >> /etc/prometheus/.htpasswd
+        PASS=${globals.PASS}
+        printf "Prometheus:$(openssl passwd -crypt $PASS)\n" >> /etc/prometheus/.htpasswd
       user: root
       sayYes: true
