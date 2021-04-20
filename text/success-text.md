@@ -5,3 +5,10 @@ Login:
 
 **Username**: admin  
 **Password**: admin
+
+
+***Prometheus*** (if selected)
+
+**Admin Panel**: [https://${env.domain}](https://${env.domain})/prometheus  
+**Username**: Prometheus  
+**Password**: ${globals.PROM_PASS} 
