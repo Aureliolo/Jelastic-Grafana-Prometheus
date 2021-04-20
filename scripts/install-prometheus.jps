@@ -98,8 +98,6 @@ actions:
     - log: Setup basic auth
     - cmd[cp]: |-
         PASS=${settings.prom_pass}
-        ${settings.prom_pass}
-        PASS = ${settings.prom_pass}
         printf "Prometheus:$(openssl passwd -crypt $PASS)\n" >> /etc/prometheus/.htpasswd
       user: root
       sayYes: true
