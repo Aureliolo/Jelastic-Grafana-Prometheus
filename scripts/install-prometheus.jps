@@ -48,7 +48,7 @@ actions:
       sayYes: true
 
   configure-prometheus:
-    - log: Configure Prometheus
+    - log: Configure Prometheus permissions
     - cmd[cp]: |-
         for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chown -R prometheus:prometheus /etc/prometheus/${i}; done
         for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chmod -R 775 /etc/prometheus/${i}; done
