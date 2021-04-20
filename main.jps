@@ -134,8 +134,18 @@ actions:
       - cmd[cp]: |-
           sed -i '74d' /etc/nginx/nginx.conf
           sed -i "74i proxy_pass http://localhost:3000/;"  /etc/nginx/nginx.conf
+          sed -i "72i location /prometheus {"  /etc/nginx/nginx.conf
+          sed -i "72i    auth_basic "Prometheus";"  /etc/nginx/nginx.conf
+          sed -i "72i    auth_basic_user_file /etc/prometheus/.htpasswd;"  /etc/nginx/nginx.conf
+          sed -i "72i    proxy_pass http://localhost:9090/prometheus;"  /etc/nginx/nginx.conf
+          sed -i "72i   }"  /etc/nginx/nginx.conf
           sed -i '29d' /etc/nginx/conf.d/ssl.conf
           sed -i "29i proxy_pass http://localhost:3000/;"  /etc/nginx/conf.d/ssl.conf
+          sed -i "27i location /prometheus {"  /etc/nginx/nginx.conf
+          sed -i "27i    auth_basic "Prometheus";"  /etc/nginx/nginx.conf
+          sed -i "27i    auth_basic_user_file /etc/prometheus/.htpasswd;"  /etc/nginx/nginx.conf
+          sed -i "27i    proxy_pass http://localhost:9090/prometheus;"  /etc/nginx/nginx.conf
+          sed -i "27i   }"  /etc/nginx/nginx.conf
         user: root
     - api [cp]: jelastic.environment.control.RestartNodes 
 
