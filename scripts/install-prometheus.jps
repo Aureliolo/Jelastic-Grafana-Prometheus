@@ -21,6 +21,7 @@ actions:
         for i in rules rules.d files_sd; do sudo mkdir -p /etc/prometheus/${i}; done
         echo /var/lib/prometheus >> /etc/jelastic/redeploy.conf
         echo /etc/prometheus >> /etc/jelastic/redeploy.conf
+        usermod -a -G prometheus jelastic
       user: root
       sayYes: true
 
@@ -47,8 +48,8 @@ actions:
   configure-prometheus:
     - log: Configure Prometheus
     - cmd[cp]: |-
-        for i in rules rules.d files_sd; do chown -R prometheus:prometheus /etc/prometheus/${i}; done
-        for i in rules rules.d files_sd; do chmod -R 775 /etc/prometheus/${i}; done
+        for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chown -R prometheus:prometheus /etc/prometheus/${i}; done
+        for i in rules rules.d files_sd console_libraries consoles .htpasswd prometheus.yml; do chmod -R 775 /etc/prometheus/${i}; done
         chown -R prometheus:prometheus /var/lib/prometheus/
       user: root
       sayYes: true
