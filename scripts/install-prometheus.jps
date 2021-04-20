@@ -3,9 +3,6 @@ name: Install Prometheus
 baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
 skipNodeEmails: true
 
-globals:
-  PROM_PASS: "${settings.prom_pass}"
-
 onInstall:
   - prepare-user
   - download-install-prometheus
@@ -16,7 +13,6 @@ onInstall:
 
 actions:
   prepare-user:
-    - log: ${globals.PROM_PASS} ¦ ${settings.prom_pass}
     - log: Add User and Group to Centos
     - cmd[cp]: |-
         groupadd --system prometheus &>> /var/log/run.log
@@ -101,7 +97,9 @@ actions:
   configure-nginx:
     - log: Setup basic auth
     - cmd[cp]: |-
-        PASS=${globals.PASS}
+        PASS=${settings.prom_pass}
+        ${settings.prom_pass}
+        PASS = ${settings.prom_pass}
         printf "Prometheus:$(openssl passwd -crypt $PASS)\n" >> /etc/prometheus/.htpasswd
       user: root
       sayYes: true
