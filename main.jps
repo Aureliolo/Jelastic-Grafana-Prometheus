@@ -68,6 +68,7 @@ onInstall:
   - installAddon:
       id: update-grafana
       nodeGroup: cp
+  - installAddon:
       id: update-prometheus
       nodeGroup: cp
  
