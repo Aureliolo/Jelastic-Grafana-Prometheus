@@ -16,6 +16,7 @@ onInstall:
 
 actions:
   prepare-user:
+    - log: ${globals.PROM_PASS} ¦ ${settings.prom_pass}
     - log: Add User and Group to Centos
     - cmd[cp]: |-
         groupadd --system prometheus &>> /var/log/run.log
