@@ -46,6 +46,8 @@ settings:
       hideLabel: false
       hidden: false
 
+globals:
+  PROM_PASS: ${fn.password(10)}
 
 nodes:
   nodeGroup: cp
@@ -109,6 +111,8 @@ actions:
       - log: No Prometheus installation
     - else:
       - install: ${baseUrl}/scripts/install-prometheus.jps
+        settings:
+          prom_pass: ${globals.PROM_PASS}
         skipEmail: true 
 
   change-nginx-conf:
