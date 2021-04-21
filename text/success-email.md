@@ -9,6 +9,6 @@ Please find the login detail for Grafana below and make sure to change the passw
 
 ***Prometheus*** (if selected)
 
-**Admin Panel**: [https://${env.domain}](https://${env.domain})/prometheus
+**Admin Panel**: [https://${env.domain}/prometheus](https://${env.domain}/prometheus) 
 **Username**: Prometheus  
 **Password**: ${globals.PROM_PASS} 
