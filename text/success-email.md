@@ -1,4 +1,4 @@
-Please find the login detail for Grafana below and make sure to change the password once logged in:
+Please find the login detail for Grafana as well as Prometheus (if it was selected) here:
 
 ***Grafana***
 
