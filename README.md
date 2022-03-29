@@ -14,7 +14,7 @@ The admin panel will be secured with basic auth from NGINX using .htpasswd
 # Installation
 Simply import this link using the Jelastic JPS Import function:
 ```
-https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main/main.jps
+https://raw.githubusercontent.com/Aureliolo/Jelastic-Grafana-Prometheus/main/main.jps
 ```
 
 Or copy the content of main.jps into the import window.
