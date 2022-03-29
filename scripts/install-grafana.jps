@@ -1,6 +1,6 @@
 type: update
 name: Install Grafana
-baseUrl: https://raw.githubusercontent.com/panslothda/Jelastic-Grafana-Prometheus/main
+baseUrl: https://raw.githubusercontent.com/Aureliolo/Jelastic-Grafana-Prometheus/main
 skipNodeEmails: true
 
 onInstall:
